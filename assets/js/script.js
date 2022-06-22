@@ -2,6 +2,7 @@ var startButtonEl = document.getElementById('start');
 var questionsEl = document.getElementById('questions');
 var currentQuestionIndex = 0;
 var choicesEl = document.getElementById('choices');
+var feedbackEl = document.getElementById('feedback');
 
 var questions = [
     {
@@ -77,6 +78,23 @@ function getQuestion() {
 
 function checkAnswer() {
     console.log('ready to check answer');
+    
+    //check if answer is corrent
+    if (this.value !== questions[currentQuestionIndex].answer) {
+        console.log('remove time here');
+        //if wrong, subtract time
+
+        //show Wrong!
+        feedbackEl.removeAttribute("class", "hide");
+        feedbackEl.textContent = "Wrong!";
+    }
+    //show feedback 
+
+    //remove feedback
+    feedbackEl.innerHTML = ""
+
+    // next question
+    currentQuestionIndex++;
 }
 
 startButtonEl.addEventListener('click', startQuiz);
