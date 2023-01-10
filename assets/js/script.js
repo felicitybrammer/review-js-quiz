@@ -99,11 +99,11 @@ function getQuestion() {
 function checkAnswer() {
   console.log('checking answer');
   score = 0;
- // flash right/wrong feedback on page for half a second
- feedbackEl.setAttribute('class', 'feedback');
- setTimeout(function () {
-   feedbackEl.setAttribute('class', 'feedback hide');
- }, 1000);
+  // flash right/wrong feedback on page for half a second
+  feedbackEl.setAttribute('class', 'feedback');
+  setTimeout(function () {
+    feedbackEl.setAttribute('class', 'feedback hide');
+  }, 1000);
   //check if answer is corrent
   if (this.value !== questions[currentQuestionIndex].answer) {
     console.log('remove time here');
@@ -144,8 +144,9 @@ function quizEnd() {
   clearInterval(interval);
 
   //show final score
-  
+
   finalScore.textContent = score + counter;
+  console.log(finalScore);
 }
 
 function saveScore() {
@@ -159,7 +160,7 @@ function saveScore() {
 
     // format new score object for current user
     var newScore = {
-      score: score,
+      score: finalScore,
       initials: initials,
     };
 
@@ -169,9 +170,12 @@ function saveScore() {
 
     // redirect to next page
     window.location.href = 'highscores.html';
+    //printScore();
   }
 }
 
-startButtonEl.addEventListener('click', startQuiz);
+
+//startButtonEl.addEventListener('click', startQuiz);
+startButtonEl.onclick = startQuiz;
 // user clicks button to submit initials
 submitBtn.onclick = saveScore;
