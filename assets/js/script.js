@@ -5,7 +5,7 @@ var choicesEl = document.getElementById('choices');
 var feedbackEl = document.getElementById('feedback');
 
 var quizTime = document.getElementById('time');
-var counter;
+var counter, interval;
 
 var questions = [
   {
@@ -58,7 +58,7 @@ function startQuiz() {
 function quizTimer() {
   //countdown from 120 every second
   counter = 100;
-  var interval = setInterval(function () {
+  interval = setInterval(function () {
     if (counter > 0) {
       quizTime.textContent = counter;
       counter--;
@@ -94,8 +94,12 @@ function getQuestion() {
 }
 
 function checkAnswer() {
-  console.log('ready to check answer');
-
+  //console.log('checking answer');
+ // flash right/wrong feedback on page for half a second
+ feedbackEl.setAttribute('class', 'feedback');
+ setTimeout(function () {
+   feedbackEl.setAttribute('class', 'feedback hide');
+ }, 1000);
   //check if answer is corrent
   if (this.value !== questions[currentQuestionIndex].answer) {
     console.log('remove time here');
@@ -115,20 +119,25 @@ function checkAnswer() {
   currentQuestionIndex++;
 
 
-  // flash right/wrong feedback on page for half a second
-  feedbackEl.setAttribute('class', 'feedback');
-  setTimeout(function () {
-    feedbackEl.setAttribute('class', 'feedback hide');
-  }, 1000);
-
   // check if we've run out of questions
   if (time <= 0 || currentQuestionIndex === questions.length) {
     quizEnd();
+    console.log('ending the quiz');
   } else {
     getQuestion();
+    console.log('getting another question');
   }
 }
 
-function quizEnd() {}
+function quizEnd() {
+  //clear questions screen
+  questionsEl.setAttribute('class', 'hide');
+  //show the end screen
+  var endScreenContainer = document.getElementById('end-screen');
+  endScreenContainer.removeAttribute('class', 'hide');
+  //stop the timer
+  quizTime.textContent = counter;
+  clearInterval(interval);
+}
 
 startButtonEl.addEventListener('click', startQuiz);
