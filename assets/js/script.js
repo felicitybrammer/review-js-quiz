@@ -70,13 +70,14 @@ function quizTimer() {
 }
 
 function getQuestion() {
+
   //get current question object from array
   var currentQuestion = questions[currentQuestionIndex];
   //update title with current question
   var titleEl = document.getElementById('question-title');
   titleEl.textContent = currentQuestion.title;
   //clear out any old question choices
-  choicesEl.innerHTML = ""
+  choicesEl.innerHTML = "";
   //loop over choices
   currentQuestion.choices.forEach((choice, i) => {
     //create new buttons for each choice
@@ -88,7 +89,7 @@ function getQuestion() {
     //attach click event listener to each choice //object.onclick = function(){}
     choiceBtn.onclick = checkAnswer;
     //display on the page
-    questionsEl.appendChild(choiceBtn);
+    choicesEl.appendChild(choiceBtn);
   });
 }
 
@@ -109,14 +110,25 @@ function checkAnswer() {
     feedbackEl.removeAttribute("class", "hide");
     feedbackEl.textContent = "Correct!";
   }
-  //show feedback 
-
-  //remove feedback
-  //feedbackEl.innerHTML = ""
 
   // next question
   currentQuestionIndex++;
-  getQuestion();
+
+
+  // flash right/wrong feedback on page for half a second
+  feedbackEl.setAttribute('class', 'feedback');
+  setTimeout(function () {
+    feedbackEl.setAttribute('class', 'feedback hide');
+  }, 1000);
+
+  // check if we've run out of questions
+  if (time <= 0 || currentQuestionIndex === questions.length) {
+    quizEnd();
+  } else {
+    getQuestion();
+  }
 }
+
+function quizEnd() {}
 
 startButtonEl.addEventListener('click', startQuiz);
