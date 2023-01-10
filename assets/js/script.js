@@ -5,7 +5,10 @@ var choicesEl = document.getElementById('choices');
 var feedbackEl = document.getElementById('feedback');
 
 var quizTime = document.getElementById('time');
-var counter, interval;
+var counter, interval, score;
+var finalScore = document.getElementById('final-score');
+var initialsEl = document.getElementById('initials');
+var submitBtn = document.getElementById('submit');
 
 var questions = [
   {
@@ -94,7 +97,8 @@ function getQuestion() {
 }
 
 function checkAnswer() {
-  //console.log('checking answer');
+  console.log('checking answer');
+  score = 0;
  // flash right/wrong feedback on page for half a second
  feedbackEl.setAttribute('class', 'feedback');
  setTimeout(function () {
@@ -110,7 +114,7 @@ function checkAnswer() {
     feedbackEl.removeAttribute("class", "hide");
     feedbackEl.textContent = "Wrong! You lost 5 seconds.";
   } else if (this.value == questions[currentQuestionIndex].answer) {
-    //score++
+    score++
     feedbackEl.removeAttribute("class", "hide");
     feedbackEl.textContent = "Correct!";
   }
@@ -138,6 +142,36 @@ function quizEnd() {
   //stop the timer
   quizTime.textContent = counter;
   clearInterval(interval);
+
+  //show final score
+  
+  finalScore.textContent = score + counter;
+}
+
+function saveScore() {
+  var initials = initialsEl.value.trim();
+
+  // make sure value wasn't empty
+  if (initials !== '') {
+    // get saved scores from localstorage, or if not any, set to empty array
+    var highscores =
+      JSON.parse(window.localStorage.getItem('highscores')) || [];
+
+    // format new score object for current user
+    var newScore = {
+      score: score,
+      initials: initials,
+    };
+
+    // save to localstorage
+    highscores.push(newScore);
+    window.localStorage.setItem('highscores', JSON.stringify(highscores));
+
+    // redirect to next page
+    window.location.href = 'highscores.html';
+  }
 }
 
 startButtonEl.addEventListener('click', startQuiz);
+// user clicks button to submit initials
+submitBtn.onclick = saveScore;
