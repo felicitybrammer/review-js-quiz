@@ -1,1 +1,2 @@
-# review-js-quiz
+# JavaScript Quiz
+
