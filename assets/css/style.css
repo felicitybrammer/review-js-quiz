@@ -22,14 +22,17 @@ a {
 h1 {
     padding: 3rem auto;
 }
+.wrapper {
+    width: 80%;
+}
 
 #start-screen, #questions, #end-screen {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    margin: 3rem auto;
-    width: 50%;
+    
+    width: 100%;
 }
 
 #start-screen, #questions {
@@ -38,7 +41,7 @@ h1 {
 }
 
 #start-screen, #questions, #end-screen p {
-    padding: 25px;
+    padding: 0 25px;
     font-size: 18px;
     text-align: center;
 }
@@ -57,7 +60,12 @@ button:hover {
     background-color: darkorchid;
 }
 
-.choices button {
+.choices {
+    display: flex;
+    flex-direction: column;
+}
+
+.choice button {
     flex-direction: column;
     flex-wrap: wrap;
     background-color: darkslateblue;
@@ -70,7 +78,7 @@ button:hover {
     border: none; 
 }
 
-.choices button:hover {
+.choice button:hover {
     background-color: darkorchid;
 }
 
@@ -82,13 +90,13 @@ button:hover {
 }
 
 #buttons {
-    display: inline;
+    display: flex;
 }
 
 #feedback {
     text-align: center;
     color: rgba(0,0,0,0.5);
-    font-size: 28px;
+    font-size: 18px;
     font-style: italic;
     font-weight: normal; 
 }
