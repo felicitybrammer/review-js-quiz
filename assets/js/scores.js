@@ -4,13 +4,13 @@ function printScore() {
       JSON.parse(window.localStorage.getItem('highscores')) || [];
     //sort high scores into descending order
     highscoresToPrint.sort(function (a, b) {
-      return b.finalScore - a.finalScore;
+      return b.core - a.finalScore;
     })
     console.log(highscoresToPrint);
     //create li tag for each score
     for (var i = 0; i < highscoresToPrint.length; i++) {
       var liTag = document.createElement('li');
-      liTag.textContent = highscoresToPrint[i].initials + ' - ' + highscoresToPrint[i].finalScore;
+      liTag.textContent = highscoresToPrint[i].initials + ' - ' + highscoresToPrint[i].score;
       //display on page
       var olEl = document.getElementById('highscores');
       olEl.appendChild(liTag);
