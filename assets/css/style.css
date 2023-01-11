@@ -1,3 +1,102 @@
+
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: auto;
+    margin: auto;
+}
+
+a {
+    text-decoration: none;  
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    padding: 25px;
+}
+
+h1 {
+    padding: 3rem auto;
+}
+
+#start-screen, #questions, #end-screen {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 3rem auto;
+    width: 50%;
+}
+
+#start-screen, #questions {
+    flex-direction: column;
+    
+}
+
+#start-screen, #questions, #end-screen p {
+    padding: 25px;
+    font-size: 18px;
+    text-align: center;
+}
+
+button {
+    background-color: darkslateblue;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    margin: 10px; 
+}
+
+button:hover {
+    background-color: darkorchid;
+}
+
+.choices button {
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: darkslateblue;
+    color: white;
+    border-radius: 10px;
+    margin: 5px 0;
+    font-size: 18px;
+    padding: 10px;
+    width: 500px;
+    border: none; 
+}
+
+.choices button:hover {
+    background-color: darkorchid;
+}
+
+#scores-wrapper {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+}
+
+#buttons {
+    display: inline;
+}
+
+#feedback {
+    text-align: center;
+    color: rgba(0,0,0,0.5);
+    font-size: 28px;
+    font-style: italic;
+    font-weight: normal; 
+}
+
+li {
+    font-size: 25px;
+}
+
 .hide {
     visibility: hidden;
 }

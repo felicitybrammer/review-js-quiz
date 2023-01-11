@@ -110,10 +110,10 @@ function checkAnswer() {
     console.log('remove time here');
     //if wrong, subtract time
     quizTime.textContent = counter;
-    counter = counter - 5;
+    counter = counter - 10;
     //show Wrong!
     feedbackEl.removeAttribute("class", "hide");
-    feedbackEl.textContent = "Wrong! You lost 5 seconds.";
+    feedbackEl.textContent = "Wrong! You lost 10 seconds.";
   } else if (this.value == questions[currentQuestionIndex].answer) {
     score++;
     feedbackEl.removeAttribute("class", "hide");

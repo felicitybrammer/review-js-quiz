@@ -10,22 +10,22 @@
 </head>
 
 <body>
+  <div class="header">
+    <div class="scores">
+      <a href="highscores.html">View Highscores</a>
+    </div>
 
-  <div class="scores">
-    <a href="highscores.html">View Highscores</a>
+    <div class="timer">
+      Time: <span id="time"></span> s
+    </div>
   </div>
-
-  <div class="timer">
-    Time: <span id="time"></span>
-  </div>
-
   <div class="wrapper">
     <div id="start-screen" class="start">
       <h1>Coding Quiz Challenge</h1>
       <p>
         Try to answer the following code-related questions within the time
         limit. Keep in mind that incorrect answers will penalize your
-        score/time by ten seconds!
+        score/time by 10 seconds!
       </p>
       <button id="start">Start Quiz</button>
     </div>
@@ -34,7 +34,7 @@
       <h2 id="question-title"></h2>
       <div id="choices" class="choices"></div>
     </div>
-
+    <div id="feedback" class="feedback hide"></div>
     <div id="end-screen" class="hide">
       <h2>All done!</h2>
       <p>Your final score is <span id="final-score"></span>.</p>
@@ -44,7 +44,7 @@
       </p>
     </div>
 
-    <div id="feedback" class="feedback hide"></div>
+
   </div>
 
   <!-- <script src="./assets/js/questions.js"></script> -->
