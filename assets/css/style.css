@@ -28,7 +28,7 @@ main {
     width: 80%;
 }
 
-.start-section, .question-section, .end-screen-section {
+#start-section, #questions-section, #end-screen-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -37,12 +37,12 @@ main {
     width: 100%;
 }
 
-.start-section, .question-section {
+#start-section, #questions-section {
     flex-direction: column;
     
 }
 
-.start-section, .question-section, .end-screen-section p {
+#start-section, #questions-section, #end-screen-section p {
     padding: 0 25px;
     font-size: 18px;
     text-align: center;

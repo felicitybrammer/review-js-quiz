@@ -1,14 +1,27 @@
+
+//declare variables
+
+//header variables
+var quizTime = document.getElementById('timer');
+var timeLeft;
+
+//start screen variables
 var startButtonEl = document.getElementById('start');
-var questionsEl = document.getElementById('questions');
+var startSection = document.getElementById('start-section');
+
+//quiz variables
+var questionsSection = document.getElementById('questions-section');
 var currentQuestionIndex = 0;
 var choicesEl = document.getElementById('choices');
 var feedbackEl = document.getElementById('feedback');
 
-var quizTime = document.getElementById('time');
-var counter, interval, totalScore;
 var score = 0;
+var totalScore;
+
 var finalScore = document.getElementById('final-score');
-var initialsEl = document.getElementById('initials');
+var endScreenMessage = document.getElementById('end-screen-msg');
+var initialsEl = document.getElementById('initials').value;
+var initialsInput = document.getElementById('enter-initials');
 var submitBtn = document.getElementById('submit');
 
 var questions = [
@@ -48,37 +61,39 @@ var questions = [
 
 function startQuiz() {
   console.log('starting quiz and timer');
-  var startScreenContainer = document.getElementById('start-screen');
-  startScreenContainer.setAttribute('class', 'hide');
-
-  questionsEl.removeAttribute("class"); //unhides question 1 (i+1)
-
+  // hide the start section
+  startSection.style.display = "none";
+  //show first question
+  questionsSection.style.display = "block";
+  //unhides question 1 (i+1)
+  getQuestion();
   //timer starts
   quizTimer();
-  //displays a question
-  getQuestion();
 };
 
 function quizTimer() {
-  //countdown from 120 every second
-  counter = 100;
-  interval = setInterval(function () {
-    if (counter > 0) {
-      quizTime.textContent = counter;
-      counter--;
-    } else {
-      quizTime.textContent = "";
+  //countdown from 100 every second
+  timeLeft = 100;
+
+  var interval = setInterval(function () {
+    timeLeft--;
+    quizTime.textContent = timeLeft;
+
+    if (timeLeft === 0) {
+      clearInterval(interval);
+      quizEnd();
+      endScreenMessage.textContent = "Oops! You ran out of time.";
+    } else if (currentQuestionIndex === questions.length) {
       clearInterval(interval);
     }
   }, 1000);
 }
 
 function getQuestion() {
-
   //get current question object from array
   var currentQuestion = questions[currentQuestionIndex];
   //update title with current question
-  var titleEl = document.getElementById('question-title');
+  var titleEl = document.getElementById('question-title'); //repeat
   titleEl.textContent = currentQuestion.title;
   //clear out any old question choices
   choicesEl.innerHTML = "";
@@ -99,18 +114,17 @@ function getQuestion() {
 
 function checkAnswer() {
   console.log('checking answer');
-  
   // flash right/wrong feedback on page for half a second
   feedbackEl.setAttribute('class', 'feedback');
   setTimeout(function () {
     feedbackEl.setAttribute('class', 'feedback hide');
-  }, 1000);
+  }, 500);
   //check if answer is corrent
   if (this.value !== questions[currentQuestionIndex].answer) {
     console.log('remove time here');
     //if wrong, subtract time
-    quizTime.textContent = counter;
-    counter = counter - 10;
+    quizTime.textContent = timeLeft;
+    timeLeft = timeLeft - 10;
     //show Wrong!
     feedbackEl.removeAttribute("class", "hide");
     feedbackEl.textContent = "Wrong! You lost 10 seconds.";
@@ -125,7 +139,7 @@ function checkAnswer() {
 
 
   // check if we've run out of questions
-  if (time <= 0 || currentQuestionIndex === questions.length) {
+  if (timeLeft <= 0 || currentQuestionIndex === questions.length) {
     quizEnd();
     console.log('ending the quiz');
   } else {
@@ -137,18 +151,18 @@ function checkAnswer() {
 
 function quizEnd() {
   //clear questions screen
-  questionsEl.setAttribute('class', 'hide');
+  
   //show the end screen
   var endScreenContainer = document.getElementById('end-screen');
   endScreenContainer.removeAttribute('class', 'hide');
   //stop the timer
-  quizTime.textContent = counter;
+  quizTime.textContent = timeLeft;
   clearInterval(interval);
 
   //show final score
-  console.log(score); 
-  console.log(counter); //works
-  totalScore = score + counter;
+  console.log(score);
+  console.log(timeLeft); //works
+  totalScore = score + timeLeft;
   finalScore.textContent = totalScore;
   console.log(finalScore);
 }

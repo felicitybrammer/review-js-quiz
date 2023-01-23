@@ -21,7 +21,7 @@
 
   <main>
     <!-- start screen with instructions and start button -->
-    <section class="start-section">
+    <section id="start-section">
       <h1>Coding Quiz Challenge</h1>
       <p>
         Try to answer the following code-related questions within the time
@@ -32,15 +32,15 @@
     </section>
 
     <!-- quiz questions -->
-    <section class="quiz-section">
+    <section id="questions-section">
       <h2 id="question-title"></h2>
-      <ul id="choices"></ul>
-      <div id="feedback"></div>
+      <div id="choices"></div>
+      <div id="feedback" class="feedback hide"></div>
     </section>
 
     <!-- enter scores screen -->
-    <section class="end-screen-section">
-      <h2>All Done!</h2>
+    <section id="end-screen-section">
+      <h2 id="end-screen-msg"></h2>
       <p id="final-score"></p>
       <form id="enter-initial">
         <label for="initials">Enter initials: </label>
@@ -50,7 +50,7 @@
     </section>
 
     <!-- highscores section -->
-    <section class="highscores-section">
+    <section id="highscores-section">
       <h1>High Scores</h1>
       <ol id="highscores-list"></ol>
       <div id="buttons-wrapper">
