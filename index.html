@@ -5,31 +5,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Quiz</title>
+  <title>Code Quiz</title>
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
-  <div class="header">
-    <div class="scores">
-      <a href="highscores.html">View Highscores</a>
+  <header>
+    <nav>
+      <p id="view-highscores">View Highscores</p>
+    </nav>
+    <div>
+      <p>Time: <span id="timer">0</span></p>
     </div>
+  </header>
 
-    <div class="timer">
-      Time: <span id="time"></span> s
-    </div>
-  </div>
-
-  <div class="wrapper">
-    <div id="end-screen" class="hide">
-      <h2>All done!</h2>
-      <p>Your final score is <span id="final-score"></span>.</p>
-      <p>
-        Enter initials: <input type="text" id="initials" max="3" />
-        <button id="submit">Submit</button>
-      </p>
-    </div>
-    <div id="start-screen" class="start">
+  <main>
+    <!-- start screen with instructions and start button -->
+    <section class="start-section">
       <h1>Coding Quiz Challenge</h1>
       <p>
         Try to answer the following code-related questions within the time
@@ -37,14 +29,36 @@
         score/time by 10 seconds!
       </p>
       <button id="start">Start Quiz</button>
-    </div>
-    <div id="questions" class="hide">
+    </section>
+
+    <!-- quiz questions -->
+    <section class="quiz-section">
       <h2 id="question-title"></h2>
-      <div id="choices" class="choices"></div>
-    </div>
-    <div id="feedback" class="feedback hide"></div>
-    
-  </div>
+      <ul id="choices"></ul>
+      <div id="feedback"></div>
+    </section>
+
+    <!-- enter scores screen -->
+    <section class="end-screen-section">
+      <h2>All Done!</h2>
+      <p id="final-score"></p>
+      <form id="enter-initial">
+        <label for="initials">Enter initials: </label>
+        <input type="text" name="intials" id="initials" max="3" />
+        <button id="submit" type="submit">Submit</button>
+      </form>
+    </section>
+
+    <!-- highscores section -->
+    <section class="highscores-section">
+      <h1>High Scores</h1>
+      <ol id="highscores-list"></ol>
+      <div id="buttons-wrapper">
+        <button id="go-back-btn">Go Back</button>
+        <button id="clear-btn">Clear High Scores</button>
+      </div>
+    </section>
+  </main>
   <script src="./assets/js/script.js"></script>
 </body>
 

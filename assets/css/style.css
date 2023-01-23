@@ -1,4 +1,8 @@
+:root {
+    --button-regular: --button-regular;
+    --button-hover: --button-hover;
 
+}
 
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -6,11 +10,8 @@ body {
     margin: auto;
 }
 
-a {
-    text-decoration: none;  
-}
 
-.header {
+header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -22,11 +23,12 @@ a {
 h1 {
     padding: 3rem auto;
 }
-.wrapper {
+
+main {
     width: 80%;
 }
 
-#start-screen, #questions, #end-screen {
+.start-section, .question-section, .end-screen-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -35,19 +37,19 @@ h1 {
     width: 100%;
 }
 
-#start-screen, #questions {
+.start-section, .question-section {
     flex-direction: column;
     
 }
 
-#start-screen, #questions, #end-screen p {
+.start-section, .question-section, .end-screen-section p {
     padding: 0 25px;
     font-size: 18px;
     text-align: center;
 }
 
 button {
-    background-color: darkslateblue;
+    background-color: --button-regular;
     color: white;
     padding: 10px 30px;
     border: none;
@@ -57,7 +59,7 @@ button {
 }
 
 button:hover {
-    background-color: darkorchid;
+    background-color: --button-hover;
 }
 
 .choices {
@@ -68,7 +70,7 @@ button:hover {
 .choice button {
     flex-direction: column;
     flex-wrap: wrap;
-    background-color: darkslateblue;
+    background-color: --button-regular;
     color: white;
     border-radius: 10px;
     margin: 5px 0;
@@ -79,17 +81,17 @@ button:hover {
 }
 
 .choice button:hover {
-    background-color: darkorchid;
+    background-color: --button-hover;
 }
 
-#scores-wrapper {
+.highscores-section {
    display: flex;
    flex-direction: column;
    justify-content: space-around;
    align-items: center;
 }
 
-#buttons {
+#buttons-wrapper {
     display: flex;
 }
 
@@ -105,6 +107,4 @@ li {
     font-size: 25px;
 }
 
-.hide {
-    visibility: hidden;
-}
+
